@@ -1,0 +1,17 @@
+<meta charset="UTF-8">
+<script>
+var a = prompt(" diga o valor de A na expressão") 
+var b = prompt(" diga o valor de B na expressão") 
+var c = prompt(" diga o valor de C na expressão") 
+
+var delta = b*b - 4*a*c
+
+var x1 = ( -b - Math.sqrt(delta) ) / (2*a)
+
+var x2 = ( -b + Math.sqrt(delta) ) / (2*a)
+
+document.write("x1 = " + x1 + "<br>")
+
+document.write("x2 = " + x2)
+
+</script>
