@@ -1,0 +1,63 @@
+<script> 
+
+function mostra (frase) { 
+	document.write (frase + "<br>") 
+} 
+
+var tipo; 
+var pcompra; 
+var pvenda; 
+var resultado;
+var contLucro = 0 
+var contPre = 0 
+var total = 0 
+
+while (tipo != "F" ) { 
+ 
+ tipo = prompt(" qual o tipo de ação ")
+   
+	if (tipo == "F") { 
+
+	break 
+}   
+   pcompra = parseInt(prompt(" qual o valor de compra das ações? "))
+
+   pvenda = parseInt(prompt(" qual o valor de venda das ações? "))
+
+   resultado = pvenda - pcompra 
+   
+   total = total + resultado 
+   
+	mostra (" Tipo de ação : " + tipo) 
+	
+
+	if (resultado > 0) {
+	mostra(" voce teve lucro! ") 
+	contLucro++ 
+	
+}
+
+	if (resultado < 0) {
+	mostra(" voce teve prejuizo! ") 
+	contPre++
+}
+	mostra (" de " + resultado + " reais <br>" )
+}
+
+mostra ("Qtd. de ações com lucro: " + contLucro)
+mostra ("Qtd. de ações com preju: " + contPre)  
+mostra ("teve um total de : " + total  )
+
+	if (total > 0) {
+	mostra(" voce teve lucro! ") 
+	 	
+}
+
+	if (total < 0) {
+	mostra(" voce teve prejuizo! ") 
+	
+}
+	
+
+
+</script>
