@@ -43,3 +43,16 @@ class matrix:
     def __truediv__(self, other):
         pass 
 
+    def dot(self, other): 
+        res = matrix(self.rows, other.cols) 
+
+        for i in range(1,self.rows, + 1): 
+            for j in range(1, other.cols + 1): 
+                for k in range(1, self.cols + 1): 
+                    res[i, j] = self[i, k] * other [k, j] + res[i,j] 
+        
+        return res 
+
+    def _samesize_(self, other): 
+        return  True if self.rows == other.rows and self.cols == other.cols else False 
+
