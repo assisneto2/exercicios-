@@ -6,7 +6,8 @@ class matrix:
         self.rows = rows 
         self.cols = cols 
         
-        if data: 
+        if data:
+            
             self.data = data 
         else: 
             self.data = [0] * (self.rows * self.cols) 
@@ -19,52 +20,110 @@ class matrix:
         i, j = key  
         self.data[(j-1) + (i-1) * self.cols] = value
 
+
+
+    def __radd__(self, other): 
+        return self.__add__(other) 
+
     def __add__(self, other):
-        res = matrix(self.rows , self.cols) 
+        if type(other) == int or type(other) == float:  
+                res = matrix(self.rows , self.cols) 
+                for i in  range(1,self.rows + 1):
+                    for j in range(1,self.cols + 1):
+                        res[i, j] = self [i, j] + other
+        
+                return res 
 
-        for i in  range(1,self.rows + 1):
-            for j in range(1,self.cols + 1):
-                res[i, j] = self[i, j] + other[i, j]
+        elif type(other) == matrix: 
+            if self._samesize_(self, other):
+                res = matrix(self.rows , self.cols) 
+                for i in  range(1,self.rows + 1):
+                    for j in range(1,self.cols + 1):
+                        res[i, j] = self [i, j] + other [i, j]
 
-        return res
+                return res
+            else: 
+                print("matrix de tamanhos diferentes!")
+        else:
+            print("nao é nem numero nem matrix")     
+
+
+
+    def __rsub__(self, other): 
+        return self.__sub__(other) 
 
     def __sub__(self, other):
-        res = matrix(self.rows , self.cols) 
+        if type(other) == int or type(other) == float: 
+            res = matrix(self.rows , self.cols) 
+            for i in  range(1,self.rows + 1):
+                for j in range(1,self.cols + 1):
+                    res[i, j] = self [i, j] - other
 
-        for i in  range(1,self.rows + 1):
-            for j in range(1,self.cols + 1):
-                res[i, j] = self [i, j] - other [i, j]
+            return res
 
-        return res
+        elif type(other) == matrix:
+            res = matrix(self.rows , self.cols) 
+            for i in  range(1,self.rows + 1):
+                for j in range(1,self.cols + 1):
+                    res[i, j] = self [i, j] - other
 
-    def __mul__(self, other):
-        res = matrix(self.rows , self.cols) 
+            return res 
 
-        for i in range(1, self.rows + 1): 
-            for j in range(1, self.cols + 1): 
-                res[i, j] = self[i, j] * other[i, j]  
-         
-        return res 
+
+    def __rmult__(self, other): 
+        return self.__mult__(other) 
+
+    def __mult__(self, other):
+        if type(other) == int or type(other) == float: 
+            res = matrix(self.rows , self.cols) 
+            for i in range(1, self.rows + 1): 
+                for j in range(1, self.cols + 1): 
+                    res[i, j] = self[i, j] * other  
+            
+            return res  
+
+        elif type(other) == matrix: 
+            res = matrix(self.rows , self.cols) 
+            for i in range(1, self.rows + 1): 
+                for j in range(1, self.cols + 1): 
+                    res[i, j] = self[i, j] * other[i, j]
+
+            return res 
+
+
+
+    def __rdiv__(self, other): 
+        return self.__truediv__(other) 
 
     def __truediv__(self, other):
-        res = matrix (self.rows , self.cols) 
+        if type(other) == int or type(other) == float: 
+            res = matrix(self.rows , self.cols) 
+            for i in range(1, self.rows + 1): 
+                for j in range(1, self.cols + 1): 
+                    res[i, j] = self[i, j] / other  
+        
+            return res  
 
-        for i in range(1, self.rows + 1): 
-            for j in range (1, self.cols + 1): 
-                res [i, j] = self [i, j] / other [i, j] 
+        elif type(other) == matrix: 
+            res = matrix(self.rows , self.cols) 
+            for i in range(1, self.rows + 1): 
+                for j in range(1, self.cols + 1): 
+                    res[i, j] = self[i, j] / other[i, j]
 
-        return res 
-         
+            return res 
+
+
 
     def dot(self, other): 
         res = matrix(self.rows, other.cols) 
 
-        for i in range(1,self.rows, + 1): 
+        for i in range(1,self.rows + 1): 
             for j in range(1, other.cols + 1): 
                 for k in range(1, self.cols + 1): 
                     res[i, j] = self[i, k] * other [k, j] + res[i,j] 
         
         return res 
 
-    def _samesize_(self, other): 
-        return  True if self.rows == other.rows and self.cols == other.cols else False 
+    def _samesize_(self,c,d): 
+        return True if c.rows == d.rows and c.cols == d.cols else False 
+
