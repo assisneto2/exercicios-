@@ -1,0 +1,47 @@
+
+package com.company;
+
+import com.sun.org.apache.xpath.internal.SourceTree;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner prompt = new Scanner(System.in);
+
+        int x;
+        int y;
+        int somarx = 0;
+        int somary = 0;
+
+        System.out.println("diga um numero: ");
+        x = prompt.nextInt();
+
+        for (int i = 1; x>i; i++) {
+            if (x % i == 0) {
+                somarx = somarx + i;
+
+            }
+        }
+        prompt.nextLine();
+        System.out.println("diga o segundo numero: ");
+        y = prompt.nextInt();
+
+        for (int j = 1; y>j; j++) {
+            if (y % j == 0) {
+                somary = somary + j;
+            }
+        }
+        if (somarx == y || somary == x) {
+            System.out.println("os numeros escolhidos sao amigaveis");
+        }else{
+            System.out.println("esses numeros não são amigaveis");
+        }
+
+    }
+}
+
+
+
