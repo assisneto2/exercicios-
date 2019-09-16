@@ -38,7 +38,17 @@ class matrix:
     def __rdiv__(self, other): 
         return self.__truediv__(other) 
 
-    
+    def __repr__(self): 
+        res = " "
+        for i in range (1, self.rows + 1): 
+            for j in range (1, self.cols + 1): 
+                if self [i, j] < 0: 
+                    res += ('{:>4.4f}    '.format(self[i, j]))
+                else: 
+                    res += (' {:>4.4f}    '.format(self[i, j]))
+            res += ('\n')
+        return res 
+
 
     def __add__(self, other):
         res = matrix(self.rows , self.cols) 
